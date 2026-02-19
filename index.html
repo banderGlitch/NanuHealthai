@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMARA.AI - Helix AI Protocol Onboarding</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#10B981",
+              "primary-dark": "#059669",
+              "background-light": "#F8FAFC",
+              "background-dark": "#0F172A",
+              "card-light": "#FFFFFF",
+              "card-dark": "#1E293B",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1e293b",
+              "text-main-light": "#111827",
+              "text-main-dark": "#F3F4F6",
+              "text-sub-light": "#6B7280",
+              "text-sub-dark": "#9CA3AF",
+              "text-light": "#1e293b",
+              "text-dark": "#f8fafc",
+              "subtext-light": "#64748b",
+              "subtext-dark": "#94a3b8",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+              sans: ["Inter", "sans-serif"],
+              jakarta: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              xl: "1rem",
+              "2xl": "1.5rem",
+              "3xl": "2rem",
+            },
+            boxShadow: {
+              soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb {
+        background-color: #CBD5E1;
+        border-radius: 20px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background-color: #475569;
+      }
+      .selection-card {
+        transition: all 0.2s ease-in-out;
+      }
+      .selection-card:hover {
+        transform: translateY(-2px);
+      }
+      .selection-card.selected {
+        border-color: #10B981;
+        background-color: rgba(16, 185, 129, 0.05);
+        box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.1), 0 2px 4px -1px rgba(16, 185, 129, 0.06);
+      }
+      .dark .selection-card.selected {
+        background-color: rgba(16, 185, 129, 0.15);
+      }
+      .drop-zone {
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%23CBD5E1FF' stroke-width='2' stroke-dasharray='12%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        transition: all 0.3s;
+      }
+      .dark .drop-zone {
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%23475569FF' stroke-width='2' stroke-dasharray='12%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+      }
+      .drop-zone:hover, .drop-zone.drag-over {
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%2310B981FF' stroke-width='2' stroke-dasharray='12%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        background-color: rgba(16, 185, 129, 0.02);
+      }
+      input[type=range] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: transparent;
+        display: block;
+      }
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #10B981;
+        cursor: pointer;
+        margin-top: -7px;
+        box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+        border: 2px solid white;
+      }
+      input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 6px;
+        cursor: pointer;
+        background: #e5e7eb;
+        border-radius: 3px;
+      }
+      .dark input[type=range]::-webkit-slider-runnable-track {
+        background: #4b5563;
+      }
+      input[type=range]:focus::-webkit-slider-thumb {
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
+      }
+      input[type=range]::-moz-range-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #10B981;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+        border: 2px solid white;
+      }
+      input[type=range]::-moz-range-track {
+        width: 100%;
+        height: 6px;
+        cursor: pointer;
+        background: #e5e7eb;
+        border-radius: 3px;
+      }
+      .dark input[type=range]::-moz-range-track {
+        background: #4b5563;
+      }
+      .range-slider-energy::-webkit-slider-runnable-track {
+        background: linear-gradient(to right, #f87171, #facc15, #22c55e);
+      }
+      .range-slider-energy::-moz-range-track {
+        background: linear-gradient(to right, #f87171, #facc15, #22c55e);
+      }
+      .range-slider-stress::-webkit-slider-runnable-track {
+        background: linear-gradient(to right, #22c55e, #facc15, #f87171);
+      }
+      .range-slider-stress::-moz-range-track {
+        background: linear-gradient(to right, #22c55e, #facc15, #f87171);
+      }
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
