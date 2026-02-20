@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
 import NavbarStep2 from "./components/NavbarStep2";
 import NavbarDashboard from "./components/NavbarDashboard";
@@ -23,9 +24,12 @@ const initialFormData = {
 };
 
 function App() {
+  const [showLanding, setShowLanding] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState(initialFormData);
   const [isDark, setIsDark] = useState(false);
+
+  const handleGetStarted = () => setShowLanding(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -50,6 +54,14 @@ function App() {
   const stepConfig = STEPS[currentStep - 1];
   const isStep2Layout = currentStep === 2;
   const isStep3Layout = currentStep === 3;
+
+  if (showLanding) {
+    return (
+      <div className="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 min-h-screen">
+        <LandingPage onGetStarted={handleGetStarted} onToggleDark={toggleDark} />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-background-light dark:bg-background-dark font-sans text-text-main-light dark:text-text-main-dark transition-colors duration-300 min-h-screen flex flex-col">
