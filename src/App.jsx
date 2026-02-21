@@ -7,6 +7,9 @@ import ProgressBar from "./components/ProgressBar";
 import Step1BasicProfile from "./components/Step1BasicProfile";
 import Step2HealthMetrics from "./components/Step2HealthMetrics";
 import Step3ProtocolDashboard from "./components/Step3ProtocolDashboard";
+import ProtocolOverview from "./components/ProtocolOverview";
+import Week1Protocol from "./components/Week1Protocol";
+import AmaraChat from "./components/AmaraChat";
 
 const STEPS = [
   { id: 1, label: "Basic Profile", title: "Let's build your protocol", subtitle: "We'll use this data to calibrate your metabolic baseline and longevity targets." },
@@ -25,11 +28,20 @@ const initialFormData = {
 
 function App() {
   const [showLanding, setShowLanding] = useState(true);
+  const [showProtocolOverview, setShowProtocolOverview] = useState(false);
+  const [showWeek1Protocol, setShowWeek1Protocol] = useState(false);
+  const [showChat, setShowChat] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState(initialFormData);
   const [isDark, setIsDark] = useState(false);
 
   const handleGetStarted = () => setShowLanding(false);
+  const handleViewPlan = () => setShowProtocolOverview(true);
+  const handleViewWeek1Plan = () => setShowWeek1Protocol(true);
+  const handleBackToDashboard = () => setShowProtocolOverview(false);
+  const handleBackFromWeek1 = () => setShowWeek1Protocol(false);
+  const handleOpenChat = () => setShowChat(true);
+  const handleCloseChat = () => setShowChat(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -55,11 +67,43 @@ function App() {
   const isStep2Layout = currentStep === 2;
   const isStep3Layout = currentStep === 3;
 
+  if (showChat) {
+    return (
+      <AmaraChat
+        onClose={handleCloseChat}
+        onToggleDark={toggleDark}
+        userName={formData.userName || "Shashank"}
+      />
+    );
+  }
+
   if (showLanding) {
     return (
       <div className="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 min-h-screen">
         <LandingPage onGetStarted={handleGetStarted} onToggleDark={toggleDark} />
       </div>
+    );
+  }
+
+  if (showWeek1Protocol) {
+    return (
+      <Week1Protocol
+        onBack={handleBackFromWeek1}
+        onOpenChat={handleOpenChat}
+        onToggleDark={toggleDark}
+      />
+    );
+  }
+
+  if (showProtocolOverview) {
+    return (
+      <ProtocolOverview
+        userName={formData.userName || "Shashank Kumar"}
+        onBackToDashboard={handleBackToDashboard}
+        onViewWeek1Plan={handleViewWeek1Plan}
+        onOpenChat={handleOpenChat}
+        onToggleDark={toggleDark}
+      />
     );
   }
 
@@ -74,7 +118,7 @@ function App() {
       )}
 
       {isStep3Layout ? (
-        <Step3ProtocolDashboard />
+        <Step3ProtocolDashboard onViewPlan={handleViewPlan} />
       ) : isStep2Layout ? (
         <Step2HealthMetrics formData={formData} setFormData={setFormData} onNext={handleNext} onBack={handleBack} />
       ) : (

@@ -4,11 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Protocol AI - Metabolic Reset &amp; Energy Optimization</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <title>Amara AI - Metabolic Reset &amp; Energy Optimization</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -34,11 +38,22 @@
               "muted-light": "#6B7280",
               "muted-dark": "#9CA3AF",
               "landing-primary": "#00C875",
+              "protocol-primary": "#13ec25",
+              "protocol-primary-dark": "#0fb81d",
+              "protocol-bg-light": "#f8fcf8",
+              "protocol-bg-dark": "#102212",
+              "protocol-surface-light": "#ffffff",
+              "protocol-surface-dark": "#1a2e1d",
+              "protocol-text-main": "#0d1b0f",
+              "protocol-text-muted": "#4c9a52",
+              "protocol-border": "#cfe7d1",
+              "protocol-border-dark": "#374151",
             },
             fontFamily: {
               display: ["Inter", "sans-serif"],
               sans: ["Inter", "sans-serif"],
               jakarta: ["Plus Jakarta Sans", "sans-serif"],
+              manrope: ["Manrope", "sans-serif"],
             },
             borderRadius: {
               DEFAULT: "0.5rem",
@@ -150,6 +165,21 @@
       }
       .range-slider-stress::-moz-range-track {
         background: linear-gradient(to right, #22c55e, #facc15, #f87171);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .filled-icon {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .chat-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+      .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .chat-scrollbar::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 3px;
+      }
+      .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #cbd5e1;
       }
       .gradient-card {
         background: linear-gradient(135deg, #1e3a2f 0%, #111827 100%);
